@@ -30,6 +30,10 @@ var (
 			BindingKey:    "machinery_task",
 			PrefetchCount: 3,
 		},
+		RocketMQ: &RocketmqConfig {
+			Group: "rocketmq_group",
+			Topic: "rocketmq_topic",
+		},
 		DynamoDB: &DynamoDBConfig{
 			TaskStatesTable: "task_states",
 			GroupMetasTable: "group_metas",
@@ -59,6 +63,7 @@ type Config struct {
 	ResultBackend           string           `yaml:"result_backend" envconfig:"RESULT_BACKEND"`
 	ResultsExpireIn         int              `yaml:"results_expire_in" envconfig:"RESULTS_EXPIRE_IN"`
 	AMQP                    *AMQPConfig      `yaml:"amqp"`
+	RocketMQ				*RocketmqConfig	 `yaml:"rocketmq"`
 	SQS                     *SQSConfig       `yaml:"sqs"`
 	Redis                   *RedisConfig     `yaml:"redis"`
 	GCPPubSub               *GCPPubSubConfig `yaml:"-" ignored:"true"`
@@ -84,6 +89,11 @@ type AMQPConfig struct {
 	BindingKey       string           `yaml:"binding_key" envconfig:"AMQP_BINDING_KEY"`
 	PrefetchCount    int              `yaml:"prefetch_count" envconfig:"AMQP_PREFETCH_COUNT"`
 	AutoDelete       bool             `yaml:"auto_delete" envconfig:"AMQP_AUTO_DELETE"`
+}
+
+type RocketmqConfig struct {
+	Group string `yaml:"group" envconfig:"ROCKETMQ_GROUP"`
+	Topic string `yaml:"topic" envconfig:"ROCKETMQ_TOPIC"`
 }
 
 // DynamoDBConfig wraps DynamoDB related configuration

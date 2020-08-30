@@ -3,6 +3,7 @@ package machinery
 import (
 	"errors"
 	"fmt"
+	rocketmqbroker "github.com/RichardKnop/machinery/v1/brokers/rocketmq"
 	neturl "net/url"
 	"os"
 	"strconv"
@@ -36,6 +37,20 @@ func BrokerFactory(cnf *config.Config) (brokeriface.Broker, error) {
 
 	if strings.HasPrefix(cnf.Broker, "amqps://") {
 		return amqpbroker.New(cnf), nil
+	}
+
+	if strings.HasPrefix(cnf.Broker, "rocketmq://") {
+		var scheme = "rocketmq://"
+		parts := strings.Split(cnf.Broker, scheme)
+		if len(parts) != 2 {
+			return nil, fmt.Errorf(
+				"rocketmq broker connection string should be in format %shost:port, instead got %s", scheme,
+				cnf.Broker,
+			)
+		}
+
+		host, group, topic, accessKey, secretKey, channel := ParseRocketmqURL(parts[1])
+		return rocketmqbroker.New(cnf, host, group, topic, accessKey, secretKey, channel), nil
 	}
 
 	if strings.HasPrefix(cnf.Broker, "redis://") || strings.HasPrefix(cnf.Broker, "rediss://") {
@@ -174,6 +189,31 @@ func BackendFactory(cnf *config.Config) (backendiface.Backend, error) {
 	}
 
 	return nil, fmt.Errorf("Factory failed with result backend: %v", cnf.ResultBackend)
+}
+
+// ParseRedisURL
+func ParseRocketmqURL(url string) (host, group, topic, accessKey, secretKey, channel string) {
+
+	// 127.0.0.1:9876,GID_TEST,test_topic,Your Access Key,Your Secret Key,ALIYUN
+	splitPart := strings.Split(url, ",")
+	if 0 != len(splitPart) {
+		host = splitPart[0]
+		group = splitPart[1]
+		topic = splitPart[2]
+		accessKey = splitPart[3]
+		secretKey = splitPart[4]
+		channel = splitPart[5]
+
+	} else {
+		// default config params
+		host = "127.0.0.1:9876"
+		group  = "GID_TEST"
+		topic = "test_topic"
+		accessKey = "Your Access Key"
+		secretKey = "Your Secret Key"
+		channel = "ALIYUN"
+	}
+	return
 }
 
 // ParseRedisURL ...

@@ -13,7 +13,9 @@ type AMQPConnector struct{}
 
 // Connect opens a connection to RabbitMQ, declares an exchange, opens a channel,
 // declares and binds the queue and enables publish notifications
-func (ac *AMQPConnector) Connect(urls string, urlSeparator string, tlsConfig *tls.Config, exchange, exchangeType, queueName string, queueDurable, queueDelete bool, queueBindingKey string, exchangeDeclareArgs, queueDeclareArgs, queueBindingArgs amqp.Table) (*amqp.Connection, *amqp.Channel, amqp.Queue, <-chan amqp.Confirmation, <-chan *amqp.Error, error) {
+func (ac *AMQPConnector) Connect(urls string, urlSeparator string, tlsConfig *tls.Config, exchange, exchangeType, queueName string,
+	queueDurable, queueDelete bool, queueBindingKey string, exchangeDeclareArgs, queueDeclareArgs, queueBindingArgs amqp.Table) (
+	*amqp.Connection, *amqp.Channel, amqp.Queue, <-chan amqp.Confirmation, <-chan *amqp.Error, error) {
 	urlsList := []string{urls}
 	if urlSeparator != "" {
 		urlsList = strings.Split(urls, urlSeparator)
