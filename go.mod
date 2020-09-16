@@ -32,8 +32,5 @@ require (
 	gopkg.in/yaml.v2 v2.3.0
 )
 
-replace (
-	//git.apache.org/thrift.git => github.com/apache/thrift v0.0.0-20180902110319-2566ecd5d999
-	github.com/RichardKnop/machinery => github.com/ThreeAndTwo/machinery v1.9.1 // indirect
-)
-
+//git.apache.org/thrift.git => github.com/apache/thrift v0.0.0-20180902110319-2566ecd5d999
+replace github.com/RichardKnop/machinery => github.com/ThreeAndTwo/machinery v1.9.1 // indirect
