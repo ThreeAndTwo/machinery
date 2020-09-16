@@ -86,13 +86,11 @@ func (b *Broker) StartConsuming(consumerTag string, concurrency int, taskProcess
 	ch := make(chan interface{})
 	var count = (int64)(1000000)
 
-	// ********************************************
-	// 1. 确保订阅关系的设置在启动之前完成。
-	// 2. 确保相同 GID 下面的消费者的订阅关系一致。
-	// *********************************************
-
 	consumer.Subscribe(b.topic, "*", func(msg *rocketmq.MessageExt) rocketmq.ConsumeStatus {
 		log.INFO.Print("[*]A message received, MessageID:%s, Body:%s \n", msg.MessageID, msg.Body)
+
+
+
 		if atomic.AddInt64(&count, -1) <= 0 {
 			ch <- "quit"
 		}
