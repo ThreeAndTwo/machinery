@@ -2,7 +2,7 @@ module github.com/RichardKnop/machinery
 
 go 1.14
 
-replace github.com/RichardKnop/machinery => github.com/ThreeAndTwo/machinery v1.9.1 // indirect
+replace github.com/RichardKnop/machinery => github.com/ThreeAndTwo/machinery v1.9.2 // indirect
 
 require (
 	cloud.google.com/go v0.61.0 // indirect
