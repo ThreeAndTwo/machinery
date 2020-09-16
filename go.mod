@@ -1,6 +1,6 @@
 module github.com/RichardKnop/machinery
 
-go 1.14
+go 1.13
 
 replace github.com/RichardKnop/machinery => github.com/ThreeAndTwo/machinery v1.9.2 // indirect
 
