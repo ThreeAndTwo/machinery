@@ -7,7 +7,7 @@ replace github.com/RichardKnop/machinery => github.com/ThreeAndTwo/machinery v1.
 require (
 	cloud.google.com/go/pubsub v1.5.0
 	github.com/RichardKnop/logging v0.0.0-20190827224416-1a693bdd4fae
-	github.com/RichardKnop/machinery v0.0.0-00010101000000-000000000000
+	github.com/RichardKnop/machinery v1.9.2
 	github.com/RichardKnop/redsync v1.2.0
 	github.com/apache/rocketmq-client-go v1.2.4
 	github.com/aws/aws-sdk-go v1.33.6
