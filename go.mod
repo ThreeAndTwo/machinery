@@ -11,10 +11,12 @@ require (
 	github.com/aws/aws-sdk-go v1.33.6
 	github.com/bradfitz/gomemcache v0.0.0-20190913173617-a41fca850d0b
 	github.com/cpuguy83/go-md2man/v2 v2.0.0 // indirect
+	github.com/go-redis/redis v6.15.8+incompatible // indirect
 	github.com/go-redis/redis/v8 v8.0.0-beta.6
 	github.com/gomodule/redigo v1.8.2
 	github.com/google/uuid v1.1.1
 	github.com/kelseyhightower/envconfig v1.4.0
+	github.com/kisielk/errcheck v1.2.0 // indirect
 	github.com/klauspost/compress v1.10.10 // indirect
 	github.com/opentracing/opentracing-go v1.2.0
 	github.com/pkg/errors v0.9.1
