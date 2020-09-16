@@ -2,6 +2,8 @@ module github.com/RichardKnop/machinery
 
 go 1.14
 
+replace github.com/RichardKnop/machinery => github.com/ThreeAndTwo/machinery v1.9.1 // indirect
+
 require (
 	cloud.google.com/go v0.61.0 // indirect
 	cloud.google.com/go/pubsub v1.5.0
@@ -35,4 +37,4 @@ require (
 )
 
 //git.apache.org/thrift.git => github.com/apache/thrift v0.0.0-20180902110319-2566ecd5d999
-replace github.com/RichardKnop/machinery => github.com/ThreeAndTwo/machinery v1.9.1 // indirect
+
